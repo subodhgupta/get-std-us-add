@@ -1,0 +1,13 @@
+{
+	"id" : "get-std-us-add",
+	"version" : "1.0",
+	"meta" : {
+		"label" : "Get Standardized US Address",
+		"description" : "Get Standardized US Address from the US Census API",
+		"author" : "Subodh Gupta",
+		"icon" : "icon-location-arrow",
+		"licenseInfo" : "Apache Software License",
+		"url": "https://www.linkedin.com/in/subodhgupta/",
+		"tags": ["Enrichment", "Open Data"]
+	}
+}

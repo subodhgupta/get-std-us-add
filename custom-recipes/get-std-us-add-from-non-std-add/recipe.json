@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "label": "Get Standardized US Address",
+    "author": "Subodh Gupta",
+    "description": "Get Standardized US Address from the US Census API.",
+    "tags": [
+      "us census",
+      "Standardized US Address",
+      "API"
+    ]
+  },
+  "kind": "PYTHON",
+  "selectableFromDataset": "input",
+  "inputRoles": [
+    {
+      "label": "Non standard address in one line",
+      "name": "input",
+      "arity": "UNARY",
+      "required": true,
+      "acceptsDataset": true
+    }
+  ],
+  "outputRoles": [
+    {
+      "label": "output block dataset",
+      "name": "output",
+      "arity": "UNARY",
+      "required": true,
+      "acceptsDataset": true
+    }
+  ],
+  "params": [
+    {
+      "name": "p_col_address",
+      "label": "Column ADDRESS:",
+      "type": "COLUMN",
+      "columnRole": "input",
+      "description": "Column corresponding to Non standard address in your input dataset",
+      "mandatory": true
+    },
+    {
+      "name": "p_benchmark",
+      "label": "Benchmark:",
+      "type": "SELECT",
+      "defaultValue": "4",
+      "description": "",
+      "selectChoices": [
+        {
+          "value": "9",
+          "label": "Public_AR_Census2010"
+        },
+        {
+          "value": "4",
+          "label": "Public_AR_Current"
+        }
+      ]
+    },
+    {
+      "name": "p_vintage",
+      "label": "Vintage:",
+      "type": "SELECT",
+      "defaultValue": "4",
+      "description": "",
+      "selectChoices": [
+        {
+          "value": "910",
+          "label": "Census2010_Census2010"
+        },
+        {
+          "value": "416",
+          "label": "ACS2016_Current"
+        },
+        {
+          "value": "4",
+          "label": "Current_Current"
+        }
+      ]
+    },
+    {
+      "name": "_options",
+      "label": "Options",
+      "type": "SEPARATOR"
+    },
+    {
+      "name": "param_api_throttle",
+      "label": "API call throttle:",
+      "type": "INT",
+      "defaultValue": 1,
+      "description": "Define the pause in seconds between each API call",
+      "mandatory": true
+    },
+    {
+      "name": "param_batch_size",
+      "label": "Input Dataset split:",
+      "type": "INT",
+      "defaultValue": 50000,
+      "description": "For handling large datasets",
+      "mandatory": true
+    },
+    {
+      "name": "param_strategy",
+      "type": "SELECT",
+      "defaultValue": "unique",
+      "description": "Does the plugin need to make your Non standard address unique (use according to Input Dataset split) otherwise use a unique row id",
+      "selectChoices": [
+        {
+          "value": "make_unique",
+          "label": "Make my Non standard address unique"
+        },
+        {
+          "value": "use_my_id",
+          "label": "Use an ID column"
+        }
+      ]
+    },
+    {
+      "name": "p_id_column",
+      "label": "Input Column ID:",
+      "type": "COLUMN",
+      "columnRole": "input",
+      "description": "Column corresponding to unique ID in your input dataset",
+      "mandatory": false,
+      "visibilityCondition": "model.param_strategy == 'use_my_id'"
+    },
+    {
+      "name": "param_id_as_int",
+      "label": "ID as INT:",
+      "type": "BOOLEAN",
+      "defaultValue": false,
+      "description": "Consider the ID values as integer",
+      "mandatory": false,
+      "visibilityCondition": "model.param_strategy == 'use_my_id'"
+    }
+  ]
+}
